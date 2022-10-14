@@ -1,4 +1,4 @@
-package com.example.secondskilltest.ui
+package com.example.secondskilltest.ui.activity
 
 import android.view.View
 import com.example.secondskilltest.R
