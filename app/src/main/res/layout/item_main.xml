@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
@@ -11,15 +12,22 @@
         android:layout_width="match_parent"
         android:layout_height="50dp">
 
-        <TextView
-            android:id="@+id/tv_item_main"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="@{text}"
-            android:textColor="@color/black"
-            android:letterSpacing="-0.05"
-            android:textSize="20dp"/>
+            android:layout_margin="10dp"
+            app:cardElevation="10dp"
+            app:cardCornerRadius="12dp"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/tv_item_main"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@{text}"
+                android:textColor="@color/black"
+                android:letterSpacing="-0.05"
+                android:textSize="20dp"/>
 
+        </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
