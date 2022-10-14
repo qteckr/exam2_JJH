@@ -4,10 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="activity"
             type="com.example.secondskilltest.ui.activity.MainActivity" />
+        <variable
+            name="adapter"
+            type="com.example.secondskilltest.ui.component.MainAdapter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -83,6 +85,8 @@
             app:layout_constraintTop_toBottomOf="@+id/btn3" />
 
         <androidx.recyclerview.widget.RecyclerView
+            setAdapter="@{adapter}"
+            setLayoutManager="@{1}"
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="400dp"

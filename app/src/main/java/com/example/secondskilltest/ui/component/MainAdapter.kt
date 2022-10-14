@@ -28,9 +28,7 @@ class MainAdapter(
     inner class ViewHolder(private val binding: ItemMainBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: String) {
-            with(binding) {
-
-            }
+            binding.text = item
         }
     }
 }
