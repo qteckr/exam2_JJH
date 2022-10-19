@@ -1,55 +1,29 @@
 package com.example.secondskilltest.data
 
-import com.example.secondskilltest.data.model.Menu
+import com.example.secondskilltest.data.model.Coffee
 import com.example.secondskilltest.data.model.ReportItem
 import com.example.secondskilltest.data.model.Sales
 import com.example.secondskilltest.data.model.Stock
 import java.util.*
 
 class MainRepository {
-    private val stock = Stock(coffee = 10000, water = 10000, milk = 5000)
+    private val stock = Stock(bean = 10000, water = 10000, milk = 5000)
     private val sales = Sales(profit = 0, history = LinkedList())
-    private val menu = ArrayList<Menu>()
-
+    private val cost = HashMap<String, Coffee>()
     init {
-        Menu.values().forEach {
-            menu.add(it)
-        }
+        cost["ESPRESSO"] = Coffee(100, 30, 0, 4000)
+        cost["LATTE"] = Coffee(100, 70, 30, 5000)
+        cost["AMERICANO"] = Coffee(100, 100, 0, 4500)
     }
 
-    fun fetchMenu() = menu
-
-    fun fetchCost(menu: Menu): HashMap<String, Int> {
-        val hashMap = HashMap<String, Int>()
-        when (menu) {
-            Menu.ESPRESSO -> {
-                hashMap["coffee"] = 100
-                hashMap["water"] = 30
-                hashMap["milk"] = 0
-                hashMap["profit"] = 4000
-            }
-            Menu.LATTE -> {
-                hashMap["coffee"] = 100
-                hashMap["water"] = 70
-                hashMap["milk"] = 30
-                hashMap["profit"] = 5000
-            }
-            Menu.AMERICANO -> {
-                hashMap["coffee"] = 100
-                hashMap["water"] = 100
-                hashMap["milk"] = 0
-                hashMap["profit"] = 4500
-            }
-        }
-        return hashMap
-    }
+    fun fetchCost(name: String) = cost[name]
 
     fun fetchStock() = stock
 
     fun fetchSales() = sales
 
     fun composeStockReport() = listOf(
-        ReportItem("커피", stock.coffee),
+        ReportItem("커피", stock.bean),
         ReportItem("물", stock.water),
         ReportItem("우유", stock.milk)
     )

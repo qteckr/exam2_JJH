@@ -7,10 +7,10 @@ class MainViewModel {
     private val repository by lazy { MainRepository() }
     private var currentMenu: Menu? = null
 
-    fun getMenu(): String {
+    fun getMenuLabel(): String {
         val menuLabel = StringBuilder()
-        repository.fetchMenu().forEach {
-            menuLabel.append("$it ")
+        Menu.values().forEach {
+            menuLabel.append("$it, ")
         }
         return menuLabel.toString()
     }
@@ -23,18 +23,18 @@ class MainViewModel {
 
     fun isPossibleToOrder(menu: Menu): Boolean {
         val stock = repository.fetchStock()
-        val cost = repository.fetchCost(menu)
-        return stock.coffee >= cost["coffee"]!! && stock.water >= cost["water"]!! && stock.milk >= cost["milk"]!!
+        val cost = repository.fetchCost(menu.name)
+        return stock.bean >= cost!!.bean && stock.water >= cost.water && stock.milk >= cost.milk
     }
 
     fun sellCoffee(menu: Menu) {
         val stock = repository.fetchStock()
-        val cost = repository.fetchCost(menu)
+        val cost = repository.fetchCost(menu.name)
         val sales = repository.fetchSales()
-        stock.coffee -= cost["coffee"]!!
-        stock.water -= cost["water"]!!
-        stock.milk -= cost["milk"]!!
-        sales.profit += cost["profit"]!!
+        stock.bean -= cost!!.bean
+        stock.water -= cost.water
+        stock.milk -= cost.milk
+        sales.profit += cost.price
         sales.history.push(menu.name)
     }
 

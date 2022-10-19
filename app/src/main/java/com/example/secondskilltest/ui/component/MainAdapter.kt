@@ -29,8 +29,8 @@ class MainAdapter(
     inner class ViewHolder(private val binding: ItemMainBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ReportItem) {
-            binding.tvTitle.text = item.title
-            binding.tvBody.text = "${item.body}"
+            binding.title = item.title
+            binding.body = item.body.toString()
         }
     }
 }

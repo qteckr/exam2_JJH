@@ -3,9 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
-            name="text"
+            name="title"
+            type="String" />
+        <variable
+            name="body"
             type="String" />
     </data>
 
@@ -32,7 +34,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:letterSpacing="-0.05"
-                    android:text="@{text}"
+                    android:text="@{title}"
                     android:textColor="@color/black"
                     android:textSize="20dp" />
 
@@ -49,7 +51,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:letterSpacing="-0.05"
-                    android:text="@{text}"
+                    android:text="@{body}"
                     android:textColor="@color/black"
                     android:textSize="20dp" />
 

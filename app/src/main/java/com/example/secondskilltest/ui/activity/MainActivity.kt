@@ -20,8 +20,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         binding.adapter = adapter
     }
 
+    private var isStockShowing = false
+    private var isSalesShowing = false
+
     fun showMenu(view: View) {
-        binding.textView.text = viewModel.getMenu()
+        binding.textView.text = viewModel.getMenuLabel()
     }
 
     fun choiceMenu(view: View) {
@@ -65,10 +68,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     fun showStockReport(view: View) {
         adapter.submitList(viewModel.getStockReport())
+        isStockShowing = true
+        isSalesShowing = false
     }
 
     fun showSalesReport(view: View) {
         adapter.submitList(viewModel.getSalesReport())
+        isSalesShowing = true
+        isStockShowing = false
     }
 
     private fun showChosenMenu(menu: Menu) {
@@ -78,7 +85,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     private fun order(menu: Menu) {
         viewModel.sellCoffee(menu)
         Snackbar.make(binding.root, "${menu.name} 메뉴를 주문했습니다.", Snackbar.LENGTH_SHORT).show()
+        updateList()
+    }
+
+    private fun updateList() {
+        if (isStockShowing) {
+            adapter.submitList(viewModel.getStockReport())
+        } else if (isSalesShowing) {
+            adapter.submitList(viewModel.getSalesReport())
+        }
     }
 }
-
-//        adapter.submitList(listOf("1", "2"))
