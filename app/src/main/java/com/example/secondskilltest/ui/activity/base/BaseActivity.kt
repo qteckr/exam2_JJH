@@ -1,4 +1,4 @@
-package com.example.secondskilltest.ui.base
+package com.example.secondskilltest.ui.activity.base
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
